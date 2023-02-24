@@ -4,41 +4,49 @@ const allFlightBookings = {
   allBookings: [
     {
       id: 1,
-      DestinationFrom: "Dhaka",
-      DestinationTo: "Sylhet",
-      JourneyDate: "11-01-23",
-      NumberOfGuests: 2,
-      FlightClass: "Business",
+      from: "Dhaka",
+      to: "Sylhet",
+      date: "11-01-23",
+      guests: 2,
+      ticketClass: "Business",
     },
     {
       id: 2,
-      DestinationFrom: "Sylhet",
-      DestinationTo: "Sylhet",
-      JourneyDate: "11-01-23",
-      NumberOfGuests: 2,
-      FlightClass: "Business",
-    },
-    {
-      id: 3,
-      DestinationFrom: "raj",
-      DestinationTo: "Sylhet",
-      JourneyDate: "11-01-23",
-      NumberOfGuests: 2,
-      FlightClass: "Business",
+      from: "Sylhet",
+      to: "Sylhet",
+      date: "11-01-23",
+      guests: 2,
+      ticketClass: "Business",
     },
   ],
 };
 
+// let lengthOfAllBookingsArray = allFlightBookings.allBookings.length;
+// console.log(lengthOfAllBookingsArray);
+
+let allBookingsLength = allFlightBookings.allBookings.length;
+console.log(allBookingsLength);
+// const newID = allBookingsLength + 1;
+// console.log(newID);
+// const updatedNewBooking = { ...newBooking, id: newID };
+
 const bookingReducer = (state = allFlightBookings, action) => {
   switch (action.type) {
     case CREATEABOOKING:
-      return [...state, action.payload.match];
+      if (allBookingsLength < 3) {
+        const newBooking = action.payload.match;
+        const newBookingObject = {
+          ...state,
+          allBookings: [...state.allBookings, newBooking],
+        };
+        return newBookingObject;
+      } else return state;
 
     case DELETEABOOKING:
-      const restMatches = state.allBookings.filter(
+      const restBookings = state.allBookings.filter(
         (booking) => booking.id !== action.payload.matchId
       );
-      return { ...state, allBookings: restMatches };
+      return { ...state, allBookings: restBookings };
 
     default:
       return state;

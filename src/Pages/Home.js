@@ -5,24 +5,44 @@ import frameSvg from "../html/img/icons/Frame.svg";
 import classType from "../html/img/icons/class.svg";
 import avatar from "../html/img/icons/avatar.svg";
 import DestinationTableRow from "../Components/DestinationTableRow";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { CreateBookingAction } from "../redux/booking/actionCreator";
 
 const Home = () => {
   const alFlights = useSelector((state) => state);
-  console.log(alFlights.allBookings);
+  const dispatch = useDispatch();
+  console.table(alFlights.allBookings);
+
+  let allBookingsLength = alFlights.allBookings.length;
+
+  let newID = allBookingsLength + 1;
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data, allBookingsLength) => {
+    const updatedNewBooking = { ...data, id: newID };
+    dispatch(CreateBookingAction(updatedNewBooking));
+  };
+
   return (
     <div>
       <section>
         {/* <!-- Input Data --> */}
         <div className="mt-[160px] mx-4 md:mt-[160px] relative">
           <div className="bg-white rounded-md max-w-6xl w-full mx-auto">
-            <form className="first-hero lws-inputform">
+            <form onSubmit={handleSubmit(onSubmit)} className="first-hero lws-inputform">
               {/* <!-- From --> */}
               <div className="des-from">
                 <p>Destination From</p>
                 <div className="flex flex-row">
                   <img src={frameSvg} alt="" />
                   <select
+                    {...register("from")}
                     className="outline-none px-2 py-2 w-full"
                     name="from"
                     id="lws-from"
@@ -31,10 +51,10 @@ const Home = () => {
                     <option value="" hidden>
                       Please Select
                     </option>
-                    <option>Dhaka</option>
-                    <option>Sylhet</option>
-                    <option>Saidpur</option>
-                    <option>Cox's Bazar</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Sylhet">Sylhet</option>
+                    <option value="Saidpur">Saidpur</option>
+                    <option value="Cox's Bazar">Cox's Bazar</option>
                   </select>
                 </div>
               </div>
@@ -45,6 +65,7 @@ const Home = () => {
                 <div className="flex flex-row">
                   <img src={frameSvg} alt="" />
                   <select
+                    {...register("to")}
                     className="outline-none px-2 py-2 w-full"
                     name="to"
                     id="lws-to"
@@ -53,10 +74,10 @@ const Home = () => {
                     <option value="" hidden>
                       Please Select
                     </option>
-                    <option>Dhaka</option>
-                    <option>Sylhet</option>
-                    <option>Saidpur</option>
-                    <option>Cox's Bazar</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Sylhet">Sylhet</option>
+                    <option value="Saidpur">Saidpur</option>
+                    <option value="Cox's Bazar">Cox's Bazar</option>
                   </select>
                 </div>
               </div>
@@ -65,6 +86,7 @@ const Home = () => {
               <div className="des-from">
                 <p>Journey Date</p>
                 <input
+                  {...register("date")}
                   type="date"
                   className="outline-none px-2 py-2 w-full date"
                   name="date"
@@ -79,6 +101,7 @@ const Home = () => {
                 <div className="flex flex-row">
                   <img src={avatar} alt="" />
                   <select
+                    {...register("guests")}
                     className="outline-none px-2 py-2 w-full"
                     name="guests"
                     id="lws-guests"
@@ -101,6 +124,7 @@ const Home = () => {
                 <div className="flex flex-row">
                   <img src={classType} alt="" />
                   <select
+                    {...register("ticketClass")}
                     className="outline-none px-2 py-2 w-full"
                     name="ticketClass"
                     id="lws-ticketClass"
@@ -109,8 +133,8 @@ const Home = () => {
                     <option value="" hidden>
                       Please Select
                     </option>
-                    <option>Business</option>
-                    <option>Economy</option>
+                    <option value="Business">Business</option>
+                    <option value="Economy">Economy</option>
                   </select>
                 </div>
               </div>

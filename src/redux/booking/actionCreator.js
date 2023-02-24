@@ -4,7 +4,7 @@ export const CreateBookingAction = (value) => {
   return {
     type: CREATEABOOKING,
     payload: {
-      match: { value },
+      match: value,
     },
   };
 };

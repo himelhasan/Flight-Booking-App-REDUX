@@ -3,8 +3,7 @@ import { useDispatch } from "react-redux";
 import { deleteABookingAction } from "../redux/booking/actionCreator";
 
 const DestinationTableRow = ({ flight }) => {
-  const { id, DestinationFrom, DestinationTo, JourneyDate, NumberOfGuests, FlightClass } =
-    flight;
+  const { id, from, to, date, guests, ticketClass } = flight;
 
   const dispatch = useDispatch();
 
@@ -17,20 +16,20 @@ const DestinationTableRow = ({ flight }) => {
     <tr className="lws-bookedTable text-black">
       <td className="px-6 py-4">
         <div className="flex items-center space-x-3">
-          <p className="lws-bookedFrom">{DestinationFrom}</p>
+          <p className="lws-bookedFrom">{from}</p>
         </div>
       </td>
       <td className="px-6 py-4">
-        <p className="lws-bookedTo">{DestinationTo}</p>
+        <p className="lws-bookedTo">{to}</p>
       </td>
       <td className="px-6 py-4 text-center">
-        <p className="lws-bookedDate">{JourneyDate}</p>
+        <p className="lws-bookedDate">{date}</p>
       </td>
       <td className="px-6 py-4 text-center">
-        <p className="lws-bookedGustes">{NumberOfGuests}</p>
+        <p className="lws-bookedGustes">{guests}</p>
       </td>
       <td className="px-6 py-4 text-center">
-        <span className="lws-bookedClass"> {FlightClass} </span>
+        <span className="lws-bookedClass"> {ticketClass} </span>
       </td>
       <td className="px-6 py-4 text-center">
         <div className="flex justify-center gap-4">
