@@ -33,12 +33,15 @@ console.log(allBookingsLength);
 const bookingReducer = (state = allFlightBookings, action) => {
   switch (action.type) {
     case CREATEABOOKING:
-      if (allBookingsLength < 3) {
+      // if (allBookingsLength < 3) {
+      console.log(action.payload);
+      if (action.payload.length < 3) {
         const newBooking = action.payload.match;
         const newBookingObject = {
           ...state,
           allBookings: [...state.allBookings, newBooking],
         };
+        console.log(action.payload.allBookingsLength);
         return newBookingObject;
       } else return state;
 

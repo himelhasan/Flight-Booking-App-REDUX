@@ -1,10 +1,11 @@
 import { CREATEABOOKING, DELETEABOOKING } from "./actionIdentifier";
 
-export const CreateBookingAction = (value) => {
+export const CreateBookingAction = (value, allBookingsLength) => {
   return {
     type: CREATEABOOKING,
     payload: {
       match: value,
+      length: allBookingsLength,
     },
   };
 };

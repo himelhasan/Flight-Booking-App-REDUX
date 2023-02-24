@@ -12,10 +12,9 @@ import { CreateBookingAction } from "../redux/booking/actionCreator";
 const Home = () => {
   const alFlights = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.table(alFlights.allBookings);
+  // console.log(alFlights.allBookings);
 
   let allBookingsLength = alFlights.allBookings.length;
-
   let newID = allBookingsLength + 1;
 
   const {
@@ -24,9 +23,9 @@ const Home = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data, allBookingsLength) => {
+  const onSubmit = (data) => {
     const updatedNewBooking = { ...data, id: newID };
-    dispatch(CreateBookingAction(updatedNewBooking));
+    dispatch(CreateBookingAction(updatedNewBooking, allBookingsLength));
   };
 
   return (
