@@ -12,7 +12,7 @@ import { CreateBookingAction } from "../redux/booking/actionCreator";
 const Home = () => {
   const alFlights = useSelector((state) => state);
   const dispatch = useDispatch();
-  // console.log(alFlights.allBookings);
+  console.table(alFlights.allBookings);
 
   let allBookingsLength = alFlights.allBookings.length;
   let newID = allBookingsLength + 1;
