@@ -1,28 +1,40 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { deleteABookingAction } from "../redux/booking/actionCreator";
 
-const DestinationTableRow = () => {
+const DestinationTableRow = ({ flight }) => {
+  const { id, DestinationFrom, DestinationTo, JourneyDate, NumberOfGuests, FlightClass } =
+    flight;
+
+  const dispatch = useDispatch();
+
+  const deleteHandler = (id) => {
+    console.log(id);
+    dispatch(deleteABookingAction(id));
+  };
+
   return (
     <tr className="lws-bookedTable text-black">
       <td className="px-6 py-4">
         <div className="flex items-center space-x-3">
-          <p className="lws-bookedFrom">Dhaka</p>
+          <p className="lws-bookedFrom">{DestinationFrom}</p>
         </div>
       </td>
       <td className="px-6 py-4">
-        <p className="lws-bookedTo">Sylhet</p>
+        <p className="lws-bookedTo">{DestinationTo}</p>
       </td>
       <td className="px-6 py-4 text-center">
-        <p className="lws-bookedDate">11-01-23</p>
+        <p className="lws-bookedDate">{JourneyDate}</p>
       </td>
       <td className="px-6 py-4 text-center">
-        <p className="lws-bookedGustes">2</p>
+        <p className="lws-bookedGustes">{NumberOfGuests}</p>
       </td>
       <td className="px-6 py-4 text-center">
-        <span className="lws-bookedClass"> Business </span>
+        <span className="lws-bookedClass"> {FlightClass} </span>
       </td>
       <td className="px-6 py-4 text-center">
         <div className="flex justify-center gap-4">
-          <button className="lws-remove">
+          <button className="lws-remove" onClick={() => deleteHandler(id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

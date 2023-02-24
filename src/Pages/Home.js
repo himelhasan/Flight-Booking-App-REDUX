@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
   const alFlights = useSelector((state) => state);
-
+  console.log(alFlights.allBookings);
   return (
     <div>
       <section>
@@ -150,9 +150,9 @@ const Home = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-300/20" id="lws-previewBooked">
-              <DestinationTableRow />
-              <DestinationTableRow />
-              <DestinationTableRow />
+              {alFlights.allBookings.map((flight) => (
+                <DestinationTableRow key={flight.id} flight={flight} />
+              ))}
             </tbody>
           </table>
         </div>
