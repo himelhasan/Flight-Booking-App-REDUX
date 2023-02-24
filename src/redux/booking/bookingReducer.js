@@ -10,6 +10,22 @@ const allFlightBookings = {
       NumberOfGuests: 2,
       FlightClass: "Business",
     },
+    {
+      id: 2,
+      DestinationFrom: "Sylhet",
+      DestinationTo: "Sylhet",
+      JourneyDate: "11-01-23",
+      NumberOfGuests: 2,
+      FlightClass: "Business",
+    },
+    {
+      id: 3,
+      DestinationFrom: "raj",
+      DestinationTo: "Sylhet",
+      JourneyDate: "11-01-23",
+      NumberOfGuests: 2,
+      FlightClass: "Business",
+    },
   ],
 };
 
